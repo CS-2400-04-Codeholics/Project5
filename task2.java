@@ -23,6 +23,7 @@ public boolean isEmpty() // true if nothing on stack
 { return (top == -1); }
 
 } // end class StackX
+
 class Vertex
     {
 public char label; // label (e.g. 'A')
@@ -38,7 +39,11 @@ wasVisited = false;
 
 class Graph
 {
-
+private final int MAX_VERTS = 20;
+private Vertex vertexList[]; // list of vertices
+private int adjMat[][]; // adjacency matrix
+private int nVerts; // current number of vertices
+private StackX theStack;
 
 public Graph() // constructor
 {
@@ -108,7 +113,36 @@ class DFSApp
 {
 public static void main(String[] args)
 {
+Graph theGraph = new Graph();
+theGraph.addVertex('A'); // 0 (start for dfs)
+theGraph.addVertex('B'); // 1
+theGraph.addVertex('C');// 2
+theGraph.addVertex('D'); // 3
+theGraph.addVertex('E'); // 4
+theGraph.addVertex('F');// 5
+theGraph.addVertex('G');// 6
+theGraph.addVertex('H');// 7
+theGraph.addVertex('I'); //8
+  
 
+theGraph.addEdge(0, 1); // AB
+theGraph.addEdge(0, 4); //AE  
+theGraph.addEdge(0, 3); //AD
+theGraph.addEdge(1, 4); //BE
+theGraph.addEdge(2, 1); // CB 
+theGraph.addEdge(3, 6);//DG
+theGraph.addEdge(4, 7);//EH
+theGraph.addEdge(4, 5);//EF
+theGraph.addEdge(5, 2);//FC
+theGraph.addEdge(5, 7);//FH
+theGraph.addEdge(6, 7);//GH
+theGraph.addEdge(7, 8);//HI
+theGraph.addEdge(8, 5);//IF
+
+System.out.print("Depth of the first traversal: ");
+theGraph.dfs(); // depth-first search
+System.out.println();
 } // end main()
 } // end class DFSApp
+
 
