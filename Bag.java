@@ -17,6 +17,7 @@ public class Bag<T>
     {
         if(capacity <= maxCapacity)
         {
+            @SuppressWarnings("unchecked")
             T[] tempBag = (T[])new Object[capacity];
             bag = tempBag;
             entryNumbers = 0;
@@ -51,6 +52,36 @@ public class Bag<T>
         }
     }
 
+    private int getIndexOf(T anEntry)
+    {
+        int place = -1;
+        boolean found = false;
+        int index = 0;
+        while(!found && (index < entryNumbers))
+        {
+            if(anEntry.equals(bag[index]))
+            {
+                found = true;
+                place = index;
+            }
+            index++;
+        }
+        return place;
+    }
+
+    private T removeEntry(int givenIndex)
+    {
+        T result = null;
+        if(!isEmpty() && (givenIndex >= 0))
+        {
+            result = bag[givenIndex];
+            bag[givenIndex] = bag[entryNumbers - 1];
+            bag[entryNumbers] = null;
+            entryNumbers++;
+        }
+        return result;
+    }
+
     public boolean isFull()
     {
         return entryNumbers == bag.length;
@@ -68,6 +99,7 @@ public class Bag<T>
 
     public T[] toArray()
     {
+        @SuppressWarnings("unchecked")
         T[] result = (T[])new Object[entryNumbers];
         for(int index = 0; index < entryNumbers; index++)
         {
@@ -106,4 +138,32 @@ public class Bag<T>
         return result;
     }
 
+    public boolean remove(T anEntry)
+    {
+        checkIntegrity();
+        int index = getIndexOf(anEntry);
+        T result = removeEntry(index);
+        return anEntry.equals(result);
+    }
+
+    public T remove()
+    {
+        checkIntegrity();
+        T result = removeEntry(entryNumbers - 1);
+        return result;
+    }
+
+    public void clear()
+    {
+        while(!isEmpty())
+        {
+            remove();
+        }
+    }
+
+    public boolean conatins(T anEntry)
+    {
+        checkIntegrity();
+        return getIndexOf(anEntry) >= 0;
+    }
 }
