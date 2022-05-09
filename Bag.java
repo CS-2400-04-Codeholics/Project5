@@ -8,11 +8,18 @@ public class Bag<T>
     private int entryNumbers;
     private boolean integrityCheck = false;
     
+    /**
+     * This creates a bag with default size capapcity.
+     */
     public Bag()
     {
         this(defaultCapacity);
     }
 
+    /**
+     * This creates a bag with user input size capacity.
+     * @param capacity
+     */
     public Bag(int capacity)
     {
         if(capacity <= maxCapacity)
@@ -29,6 +36,9 @@ public class Bag<T>
         }
     }
 
+    /**
+     * This throws an exception if input is invalid.
+     */
     private void checkIntegrity()
     {
         if(integrityCheck == false)
@@ -37,6 +47,9 @@ public class Bag<T>
         }
     }
 
+    /**
+     * This doubles the capacity of the bag array.
+     */
     private void doubleCapacity()
     {
         int newLength = 2 * bag.length;
@@ -44,14 +57,23 @@ public class Bag<T>
         bag = Arrays.copyOf(bag, newLength);
     }
 
+    /**
+     * This throws an exception if the user input capacity is greater than max capacity.
+     * @param capacity
+     */
     private void checkCapacity(int capacity)
     {
         if(capacity > maxCapacity)
         {
-            throw new IllegalStateException("Bag is larger than the max capacity.");
+            throw new IllegalStateException("Bag capacity is larger than the max capacity.");
         }
     }
 
+    /**
+     * This locates the location of a given entry within the bag array.
+     * @param anEntry
+     * @return
+     */
     private int getIndexOf(T anEntry)
     {
         int place = -1;
@@ -69,6 +91,11 @@ public class Bag<T>
         return place;
     }
 
+    /**
+     * Removes and returns a given entry in the bag array.
+     * @param givenIndex
+     * @return
+     */
     private T removeEntry(int givenIndex)
     {
         T result = null;
@@ -82,21 +109,37 @@ public class Bag<T>
         return result;
     }
 
+    /**
+     * This checks if the bag array is full.
+     * @return
+     */
     public boolean isFull()
     {
         return entryNumbers == bag.length;
     }
 
+    /**
+     * This checks if the bag array is empty.
+     * @return
+     */
     public boolean isEmpty()
     {
         return entryNumbers == 0;
     }
 
+    /**
+     * This gets the size of the bag array.
+     * @return
+     */
     public int getSize()
     {
         return entryNumbers;
     }
 
+    /**
+     * This returns the bag array.
+     * @return
+     */
     public T[] toArray()
     {
         @SuppressWarnings("unchecked")
@@ -108,6 +151,11 @@ public class Bag<T>
         return result;
     }
 
+    /**
+     * This counts the times a given entry appears in the bag array.
+     * @param anEntry
+     * @return
+     */
     public int getFrequencyOf(T anEntry)
     {
         checkIntegrity();
@@ -122,6 +170,11 @@ public class Bag<T>
         return count;
     }
 
+    /**
+     * This adds indexs to the bag array.
+     * @param newEntry
+     * @return
+     */
     public boolean add(T newEntry)
     {
         checkIntegrity();
@@ -138,6 +191,11 @@ public class Bag<T>
         return result;
     }
 
+    /**
+     * This removes one repeated entry in the bag array.
+     * @param anEntry
+     * @return
+     */
     public boolean remove(T anEntry)
     {
         checkIntegrity();
@@ -146,6 +204,10 @@ public class Bag<T>
         return anEntry.equals(result);
     }
 
+    /**
+     * This removes a entry from in the bag array.
+     * @return
+     */
     public T remove()
     {
         checkIntegrity();
@@ -153,6 +215,9 @@ public class Bag<T>
         return result;
     }
 
+    /**
+     * This clears the entire bag array.
+     */
     public void clear()
     {
         while(!isEmpty())
@@ -161,7 +226,12 @@ public class Bag<T>
         }
     }
 
-    public boolean conatins(T anEntry)
+    /**
+     * This checks if the bag array contains a given entry.
+     * @param anEntry
+     * @return
+     */
+    public boolean contains(T anEntry)
     {
         checkIntegrity();
         return getIndexOf(anEntry) >= 0;
