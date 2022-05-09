@@ -116,13 +116,13 @@ public static void main(String[] args)
 Graph theGraph = new Graph();
 theGraph.addVertex('A'); // 0 (start for dfs)
 theGraph.addVertex('B'); // 1
-theGraph.addVertex('C');// 2
+theGraph.addVertex('E');// 2
 theGraph.addVertex('D'); // 3
-theGraph.addVertex('E'); // 4
+theGraph.addVertex('C'); // 4
 theGraph.addVertex('F');// 5
-theGraph.addVertex('G');// 6
+theGraph.addVertex('I');// 6
 theGraph.addVertex('H');// 7
-theGraph.addVertex('I'); //8
+theGraph.addVertex('G'); //8
   
 
 theGraph.addEdge(0, 1); // AB
@@ -144,5 +144,6 @@ theGraph.dfs(); // depth-first search
 System.out.println();
 } // end main()
 } // end class DFSApp
+
 
 
